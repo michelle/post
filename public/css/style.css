@@ -2,4 +2,75 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,pre,code,form,fields
 a {outline: none;} /* Gets rid of Firefox's dotted borders */
 a img {border: none;} /* Gets rid of IE's blue borders */
 
+body, html {
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #6D868A;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
+#form {
+  margin: 0 auto;
+  padding-top: 5em;
+  width: 25em;
+  font-size: 1.2em;
+}
+
+#form h1 {
+
+}
+
+#form h2 {
+  color: #405c61;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  margin-bottom: .5em;
+  padding-left: 0.5em;
+}
+
+#data {
+
+}
+
+#form input {
+  font-size: 1.5em;
+  border: 0;
+  color: #405c61;
+  background-color: #cac9ae;
+  padding: 0.5em 0.5em 0.3em 0.5em;
+  width: 100%;
+}
+
+#form label {
+  display: block;
+  margin-bottom: 1em;
+  padding: 0.1em 1.5em 0.1em 1.5em;
+  text-transform: uppercase;
+  color: #cac9ae;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 0.5em;
+  width: 100%;
+  background-color: #ecebda;
+}
+
+::-webkit-input-placeholder {
+  color:    #e0dfc8;
+}
+:-moz-placeholder {
+  color:    #e0dfc8;
+}
+:-ms-input-placeholder {
+  color:    #e0dfc8;
+}
+
+#form label .red {
+  color: #e44a2e;
+}
+
+#form input:focus {
+  outline: none;
+  background-color: #ecebda;
+}

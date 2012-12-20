@@ -28,7 +28,7 @@ app.post('/post', function(req, res) {
       }
 
       options['username'] = req.body.username;
-      options['password'] = req.body.password;
+      options['password'] = req.body.username && !req.body.password ? 'test' : req.body.password;
       options['data'] = req.body.data;
       options['Content-Type'] = 'application/json';
       options['Content-Length'] = JSON.stringify(req.body.data).length;

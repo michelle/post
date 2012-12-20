@@ -22,7 +22,7 @@ $(document).ready(function() {
     $.post('/post', {
       url: $('#url').val(),
       username: $('#username').val() || undefined,
-      password: $('#password').val() || undefined,
+      password: $('#username').val() != '' ? $('#password').val() : undefined,
       data: payload
     }, function(response) {
       console.log(response);

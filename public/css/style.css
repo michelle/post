@@ -67,6 +67,7 @@ body, html {
   margin: 0;
   background-color: #5e797d;
   color: #809a9f;
+  cursor: pointer;
 }
 
 .colon {
@@ -92,6 +93,12 @@ input {
 }
 
 label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   display: block;
   margin-bottom: 1em;
   padding: 0.1em 1.5em 0.1em 1.5em;

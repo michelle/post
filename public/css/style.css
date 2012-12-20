@@ -9,9 +9,54 @@ body, html {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+#response, #request {
+  position: fixed;
+  bottom: 0;
+  opacity: 0.8;
+  width: 49%;
+  min-height: 4em;
+  background-color: #809a9f;
+  font-size: 0.8em;
+}
+
+#request h1, #response h1 {
+  color: #405c61;
+  font-size: 1.5em;
+  padding: 0 0 0 2%;
+  display: inline-block;
+  width: 20%;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#request {
+  left: 0;
+}
+
+#response {
+  right: 0;
+}
+
+#res, #req {
+  background-color: rgba(256, 256, 256, 0.1);
+  display: inline-block;
+  padding: 2%;
+  color: #405c61;
+  font-weight: 700;
+  width: 74%;
+  float: right;
+  word-wrap:break-word;
+
+}
+
+
+
 #form {
   margin: 0 auto;
-  padding: 5em 0;
+  padding: 5em 0 8em 0;
+  max-width: 70%;
   width: 25em;
   font-size: 1.2em;
 }

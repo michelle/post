@@ -20,13 +20,12 @@ app.get('/', function(req, res) {
 app.post('/post', function(req, res) {
   var errors = [];
   var options = {};
+  if (typeof req.body.url === 'undefined' || req.body.url == '') {
+    errors.push('Missing URL');
+  }
 
   if (!!req.body.data) {
     try {
-      if (typeof req.body.url === 'undefined') {
-        errors.push('Missing URL');
-      }
-
       options['username'] = req.body.username;
       options['password'] = req.body.password;
       options['data'] = req.body.data;
@@ -39,16 +38,18 @@ app.post('/post', function(req, res) {
 
   if (errors.length) {
     res.send({
+      status: 1,
       response: {
-        status: 1,
         errors: errors
-      }
+      },
+      request: options
     });
   } else {
     rest.post(req.body.url, options).on('complete', function(data) {
       res.send({
         status: 0,
-        response: data
+        response: data,
+        request: options
       });
     });
   }

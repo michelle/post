@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  var yellow = '#809a9f';
+  var red = '#d5705e';
+  var green = '#8cb279';
+
   var data_count = 0;
   $('#add').click(function() {
     var key_field = $('<input type="text" id="key-' + data_count + '">');
@@ -30,9 +34,11 @@ $(document).ready(function() {
         var value = $('#value-' + i).val();
         if (type == 'ARRAY') {
           value = strip_ends(value, '[');
-          value = value.split(',');
+          value = strip_ends(value, '"');
+          value = strip_ends(value, "'");
+          value = value.split(/['|"],\s*['|"]/);
           for (var j = 0; j < value.length; j += 1) {
-            value[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+            console.log(value);
             value[i] = strip_ends(value[i], '"');
             value[i] = strip_ends(value[i], "'");
           }
@@ -44,6 +50,8 @@ $(document).ready(function() {
         payload[key] = value;
       }
     }
+    $('#response').css({ 'backgroundColor': yellow });
+    $('#res').text('Please wait...');
     $.post('/post', {
       url: $('#url').val(),
       username: $('#username').val() || undefined,
@@ -51,6 +59,13 @@ $(document).ready(function() {
       data: payload
     }, function(response) {
       console.log(response);
+      $('#req').text(JSON.stringify(payload));
+      if (!response.status) {
+        $('#response').css({ 'backgroundColor': green });
+      } else {
+        $('#response').css({ 'backgroundColor': red });
+      }
+      $('#res').text(JSON.stringify(response.response));
     });
     console.log(payload);
   });

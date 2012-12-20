@@ -18,17 +18,41 @@ app.get('/', function(req, res) {
 });
 
 app.post('/post', function(req, res) {
+  var errors = [];
   var options = {};
+
+  if (typeof req.body.url === 'undefined') {
+    errors.push('Missing URL');
+  }
+
   if (req.body.https == true) {
     options['username'] = req.body.username;
     options['password'] = req.body.password;
   }
+
   if (!!req.body.data) {
-    options['data'] = JSON.parse(req.body.data);
+    try {
+      options['data'] = JSON.parse(req.body.data);
+    } catch (err) {
+      errors.push('Malformed data');
+    }
   }
-  rest.post(req.body.url, options).on('complete', function(data) {
-    res.send({ response: data });
-  });
+
+  if errors.length {
+    res.send({
+      response: {
+        status: 1,
+        errors: errors
+      }
+    });
+  } else {
+    rest.post(req.body.url, options).on('complete', function(data) {
+      res.send({
+        status: 0,
+        response: data
+      });
+    });
+  }
 });
 
 

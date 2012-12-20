@@ -13,6 +13,14 @@ $(document).ready(function() {
     for(var i = 0; i < data_count; i++) {
       payload[$('#key-' + i).val()] = $('#value-' + i).val();
     }
+    $.post('/post', {
+      url: $('#url').val(),
+      username: $('#username').val(),
+      password: $('#password').val(),
+      payload: payload
+    }, function(response) {
+      console.log(response);
+    });
     console.log(payload);
   });
 });

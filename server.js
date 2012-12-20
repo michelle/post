@@ -21,24 +21,27 @@ app.post('/post', function(req, res) {
   var errors = [];
   var options = {};
 
-  if (typeof req.body.url === 'undefined') {
-    errors.push('Missing URL');
-  }
-
-  if (req.body.https == true) {
-    options['username'] = req.body.username;
-    options['password'] = req.body.password;
-  }
-
   if (!!req.body.data) {
     try {
-      options['data'] = JSON.parse(req.body.data);
+      var data = JSON.parse(req.body.data);
+      if (typeof data.url === 'undefined') {
+        errors.push('Missing URL');
+      } else {
+        var url = data.url;
+      }
+
+      if (data.https == true) {
+        options.username = data.username;
+        options.password = data.password;
+      }
+
+      options.data = data.payload;
     } catch (err) {
       errors.push('Malformed data');
     }
   }
 
-  if errors.length {
+  if (errors.length) {
     res.send({
       response: {
         status: 1,
@@ -57,5 +60,3 @@ app.post('/post', function(req, res) {
 
 
 app.listen(process.env.PORT || 8000);
-
-

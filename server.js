@@ -23,19 +23,15 @@ app.post('/post', function(req, res) {
 
   if (!!req.body.data) {
     try {
-      var data = JSON.parse(req.body.data);
-      if (typeof data.url === 'undefined') {
+      if (typeof req.body.url === 'undefined') {
         errors.push('Missing URL');
-      } else {
-        var url = data.url;
       }
 
-      if (data.https == true) {
-        options.username = data.username;
-        options.password = data.password;
-      }
-
-      options.data = data.payload;
+      options['username'] = req.body.username;
+      options['password'] = req.body.password;
+      options['data'] = req.body.data;
+      options['Content-Type'] = 'application/json';
+      options['Content-Length'] = JSON.stringify(req.body.data).length;
     } catch (err) {
       errors.push('Malformed data');
     }
@@ -57,6 +53,5 @@ app.post('/post', function(req, res) {
     });
   }
 });
-
 
 app.listen(process.env.PORT || 8000);

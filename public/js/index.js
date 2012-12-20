@@ -39,8 +39,8 @@ $(document).ready(function() {
           value = value.split(/['|"],\s*['|"]/);
           for (var j = 0; j < value.length; j += 1) {
             console.log(value);
-            value[i] = strip_ends(value[i], '"');
-            value[i] = strip_ends(value[i], "'");
+            value[j] = strip_ends(value[j], '"');
+            value[j] = strip_ends(value[j], "'");
           }
         } else if (type == 'NUMBER') {
           value = parseInt(value);

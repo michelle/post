@@ -14,7 +14,10 @@ $(document).ready(function() {
   $('#submit').click(function() {
     var payload = {}
     for(var i = 0; i < data_count; i++) {
-      payload[$('#key-' + i).val()] = $('#value-' + i).val();
+      var key = $('#key-' + i).val();
+      if (key != '') {
+        payload[key] = $('#value-' + i).val();
+      }
     }
     $.post('/post', {
       url: $('#url').val(),
